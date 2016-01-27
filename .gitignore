@@ -1,0 +1,13 @@
+
+.DS_Store
+
+pids
+*.pid
+*.seed
+
+build/
+
+node_modules
+.npm
+npm-debug.log*
+.node_repl_history

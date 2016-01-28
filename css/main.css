@@ -20,7 +20,7 @@ body {
 html {
   font-family: "Roboto","Helvetica Neue","Trebuchet MS","Segoe",Helvetica,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: rgb(167, 167, 167);
+  background: rgb(180, 180, 180);
 }
 
 a {
@@ -221,11 +221,11 @@ sup {
 
   transition: all 200ms ease-in;
 
-  min-height: 350px;
+  height: 450px;
 }
 
 .mailmerge-enabled .email-content {
-  min-height: 250px;
+  height: 250px;
 }
 
 .email-actions {
@@ -340,7 +340,6 @@ sup {
   border-right: 1px solid #3c7de6;
   transition: all 200ms ease-in;
   height: 0;
-  visibility: hidden;
 }
 
 .email-datapanel-head {
@@ -356,6 +355,10 @@ sup {
   margin: 0;
   font-size: 13px;
   line-height: 20px;
+}
+
+.mailmerge-disabled .email-datapanel-head h4  {
+  visibility: hidden;
 }
 
 .email-datapanel-head-arrows {
@@ -431,10 +434,13 @@ span.email-datapanel-head-arrows-count {
 
   cursor: pointer;
   overflow: auto;
+}
+
+.hidden {
   visibility: hidden;
 }
 
-.mailmerge-enabled .email-datapanel-prompt {
+.visible {
   visibility: visible;
 }
 

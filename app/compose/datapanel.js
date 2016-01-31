@@ -27,6 +27,8 @@ export default React.createClass({
         }
         self.setState({dropzone_visible: true})
       }, 250);
+    } else if (prev_props.merge_data != this.props.merge_data) {
+      this.refs.datatable.enable_sticky_header();
     }
   },
   onDrop: function (files) {
@@ -45,11 +47,11 @@ export default React.createClass({
       setTimeout(function() {   /* simulate loading time */
         self.setState({loading: false})
         self.props.update_merge_data(data);
+        self.refs.datatable.enable_sticky_header();
       }, 1000);
     };
 
     reader.onerror = function(event) {
-      /* TODO */
       console.error("File could not be read! Code " + event.target.error.code);
     };
 
@@ -69,6 +71,7 @@ export default React.createClass({
   },
   render: function() {
     var active_index = this.props.active_index;
+
     return <div className="email-datapanel">
       <div className="email-datapanel-head">
         {this.props.merge_data === null ?
@@ -84,22 +87,21 @@ export default React.createClass({
         }
       </div>
 
-      <Dropzone onDrop={this.onDrop} ref="dropzone" accept="text/csv" className={"email-datapanel-prompt " + (this.state.dropzone_visible ? "visible" : "hidden")} activeClassName="active" style={{}}>
-        {this.props.merge_data === null ?
-            <div className={"email-datapanel-prompt " + (this.state.dropzone_visible ? "visible" : "hidden")}>
-              {this.state.loading ?
-                <img src="/images/loading.gif" alt="Loading" className="email-datapanel-prompt-loading" />
-                :
-                <div>
-                  <svg viewBox="0 0 96 120" x="0px" y="0px"><path d="M51 96h-38c-1.104 0-2-0.9-2-2v-69.672c0-0.492 0.18-0.964 0.508-1.332l20-22.328c0.38-0.424 0.92-0.668 1.492-0.668h48c1.1 0 2 0.896 2 2v58c0 1.1-0.9 2-2 2s-2-0.9-2-2v-56h-45.104l-18.896 21.092v66.908h36c1.1 0 2 0.9 2 2s-0.9 2-2 2z"/><path d="M33 28h-18c-1.104 0-2-0.896-2-2s0.896-2 2-2h16v-20c0-1.104 0.896-2 2-2s2 0.896 2 2v22c0 1.104-0.896 2-2 2z" /><path d="M73 94c-1.1 0-2-0.9-2-2v-20c0-1.1 0.9-2 2-2s2 0.9 2 2v20c0 1.1-0.9 2-2 2z" /><path d="M83 84h-20c-1.1 0-2-0.9-2-2s0.9-2 2-2h20c1.1 0 2 0.9 2 2s-0.9 2-2 2z"/></svg>
-                  <div className="email-datapanel-supported">CSV, TSV or Excel</div>
-                </div>
-              }
-            </div>
-          :
-          <div className="email-datapanel-content">
-            <DataTable ref="datatable" merge_data={this.props.merge_data} active_index={this.props.active_index} active_columns={this.props.active_columns}/>
+      <Dropzone onDrop={this.onDrop} ref="dropzone" accept="text/csv" disableClick={this.props.merge_data !== null} className={"email-datapanel-content " + (this.state.dropzone_visible ? "visible" : "hidden")} activeClassName="active">
+        {this.state.loading ?
+          <div className="email-datapanel-prompt">
+            <img src="/images/loading.gif" alt="Loading" className="email-datapanel-prompt-loading" />
           </div>
+          :
+          this.props.merge_data === null ?
+            <div className="email-datapanel-prompt">
+              <div>
+                <svg viewBox="0 0 96 120" x="0px" y="0px"><path d="M51 96h-38c-1.104 0-2-0.9-2-2v-69.672c0-0.492 0.18-0.964 0.508-1.332l20-22.328c0.38-0.424 0.92-0.668 1.492-0.668h48c1.1 0 2 0.896 2 2v58c0 1.1-0.9 2-2 2s-2-0.9-2-2v-56h-45.104l-18.896 21.092v66.908h36c1.1 0 2 0.9 2 2s-0.9 2-2 2z"/><path d="M33 28h-18c-1.104 0-2-0.896-2-2s0.896-2 2-2h16v-20c0-1.104 0.896-2 2-2s2 0.896 2 2v22c0 1.104-0.896 2-2 2z" /><path d="M73 94c-1.1 0-2-0.9-2-2v-20c0-1.1 0.9-2 2-2s2 0.9 2 2v20c0 1.1-0.9 2-2 2z" /><path d="M83 84h-20c-1.1 0-2-0.9-2-2s0.9-2 2-2h20c1.1 0 2 0.9 2 2s-0.9 2-2 2z"/></svg>
+                <div className="email-datapanel-supported">CSV, TSV or Excel</div>
+              </div>
+            </div>
+            :
+            <DataTable ref="datatable" merge_data={this.props.merge_data} active_index={this.props.active_index} active_columns={this.props.active_columns}/>
         }
       </Dropzone>
     </div>;

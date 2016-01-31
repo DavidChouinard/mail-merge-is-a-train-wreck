@@ -21,6 +21,9 @@ export default React.createClass({
   disable_sticky_header: function() {
     $(ReactDOM.findDOMNode(this)).floatThead('destroy');
   },
+  reflow_sticky_header: function() {
+    $(ReactDOM.findDOMNode(this)).floatThead('reflow');
+  },
   is_active_column: function(index) {
     return this.props.active_columns.indexOf(index) != -1
   },

@@ -10,7 +10,8 @@ import LoadingOverlay from "./loading_overlay";
 export default React.createClass({
   getInitialState: function() {
     return {
-      mail_merge_mode: true,
+      //mail_merge_mode: true,
+      mail_merge_mode: false,
       is_sending: false,
       active_index: 0,
       active_columns: [],

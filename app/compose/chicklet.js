@@ -15,7 +15,7 @@ export default React.createClass({
   },
   onDragStart: function(e) {
     this.setState({disabled: true})
-    e.dataTransfer.setData('text/html', '<span class="chicklet" data-column="' + this.props.column + '">' + this.props.heading + '</span>');
+    e.dataTransfer.setData('text/html', '<span class="chicklet" data-column="' + this.props.column + '">' + this.props.value + '</span>');
   },
   onDragEnd: function(e) {
     this.setState({disabled: false})
@@ -38,8 +38,7 @@ export default React.createClass({
           <rect x="35.311" y="75.478" width="15.689" height="15.689"/>
         </svg>
 
-        {this.props.heading}
+        {this.props.value}
       </span>
   }
-        //<svg viewBox="0 0 16 20" x="0px" y="0px"><path d="M8 0l-3 3h2v4h-4v-2l-3 3 3 3v-2h4v4h-2l2 2 1 1 1-1 2-2h-2v-4h4v2l3-3-3-3v2h-4v-4h2l-3-3z"/></svg>
 });

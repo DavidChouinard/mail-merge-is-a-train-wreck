@@ -10,31 +10,31 @@ import LoadingOverlay from "./loading_overlay";
 export default React.createClass({
   getInitialState: function() {
     return {
-      //mail_merge_mode: true,
-      mail_merge_mode: false,
+      mail_merge_mode: true,
       is_sending: false,
       active_index: 0,
-      active_columns: [],
-      merge_data: null
-      //merge_data: [
-        //["First name","Last name","Email"  ],
-        //["Peter","Mccoy","pmccoy0@blogspot.com"  ],
-        //["Lawrence","Hughes","lhughes1@gravatar.com"  ],
-        //["Barbara","Washington","bwashington2@jalbum.net"  ],
-        //["Jacqueline","Clark","jclark3@princeton.edu"  ],
-        //["Kevin","Walker","kwalker4@acquirethisname.com"  ],
-        //["Mildred","Morgan","mmorgan5@nytimes.com"  ],
-        //["Philip","Murphy","pmurphy6@wiley.com"  ],
-        //["Maria","Daniels","mdaniels7@toplist.cz"  ],
-        //["Mary","Lawrence","mlawrence8@yandex.ru"  ],
-        //["Walter","Williams","wwilliams9@friendfeed.com"  ],
-        //["Teresa","Cox","tcoxa@bbb.org"  ],
-        //["Aaron","Lynch","alynchb@cdc.gov"  ],
-        //["Kevin","Alvarez","kalvarezc@stanford.edu"  ],
-        //["Randy","Washington","rwashingtond@nih.gov"  ],
-        //["Elizabeth","Carr","ecarre@weather.com"  ],
-        //["Laura","Henderson","lhendersonf@japanpost.jp"  ],
-        //["Kathleen","Arnold","karnoldg@hud.gov"  ],
+      in_use_columns: [],
+      merge_data: [
+        //["Email"],
+        //[""]
+        ["First name", "Last name", "Email"],
+        ["Peter","Mccoy","pmccoy0@blogspot.com"  ],
+        ["Lawrence","Hughes","lhughes1@gravatar.com"  ],
+        ["Barbara","Washington","bwashington2@jalbum.net"  ],
+        ["Jacqueline","Clark","jclark3@princeton.edu"  ],
+        ["Kevin","Walker","kwalker4@acquirethisname.com"  ],
+        ["Mildred","Morgan","mmorgan5@nytimes.com"  ],
+        ["Philip","Murphy","pmurphy6@wiley.com"  ],
+        ["Maria","Daniels","mdaniels7@toplist.cz"  ],
+        ["Mary","Lawrence","mlawrence8@yandex.ru"  ],
+        ["Walter","Williams","wwilliams9@friendfeed.com"  ],
+        ["Teresa","Cox","tcoxa@bbb.org"  ],
+        ["Aaron","Lynch","alynchb@cdc.gov"  ],
+        ["Kevin","Alvarez","kalvarezc@stanford.edu"  ],
+        ["Randy","Washington","rwashingtond@nih.gov"  ],
+        ["Elizabeth","Carr","ecarre@weather.com"  ],
+        ["Laura","Henderson","lhendersonf@japanpost.jp"  ],
+        ["Kathleen","Arnold","karnoldg@hud.gov"  ],
         //["Lois","Webb","lwebbh@wsj.com"  ],
         //["Aaron","Morales","amoralesi@google.cn"  ],
         //["Mary","Castillo","mcastilloj@typepad.com"  ],
@@ -50,7 +50,7 @@ export default React.createClass({
         //["Christopher","Snyder","csnydert@weibo.com"  ],
         //["Ryan","Owens","rowensu@google.cn"  ],
         //["Angela","Lynch","alynchv@rambler.ru"  ]
-      //]
+      ]
     };
   },
   toggle_mail_merge_mode: function(index) {
@@ -66,11 +66,15 @@ export default React.createClass({
       this.setState({active_index: index});
     }
   },
-  update_active_columns: function(columns) {
-    this.setState({active_columns: columns});
+  add_row: function() {
+    var row = new Array(this.state.merge_data[0].length).fill("");
+    this.setState({merge_data: this.state.merge_data.concat([row])});
   },
-  send_emails: function() {
-    this.setState({is_sending: true});
+  add_column: function() {
+    this.setState({merge_data: this.state.merge_data.map(function(d) {
+        return d.concat([""]);
+      })
+    });
   },
   render: function() {
     var active_data = this.state.merge_data == null ? null : this.state.merge_data[this.state.active_index + 1];
@@ -85,12 +89,12 @@ export default React.createClass({
       <ComposeHeader />
 
       <div className="email-container">
-        <ComposeMain active_data={active_data} update_active_columns={this.update_active_columns}/>
+        <ComposeMain compose={this} active_data={active_data} />
 
-        <ComposeDataPanel mail_merge_mode={this.state.mail_merge_mode} merge_data={this.state.merge_data} update_merge_data={this.update_merge_data} active_index={this.state.active_index} update_active_index={this.update_active_index} active_columns={this.state.active_columns}/>
+        <ComposeDataPanel compose={this} />
       </div>
 
-      <ComposeFooter mail_merge_mode={this.state.mail_merge_mode} merge_data={this.state.merge_data} toggle_mail_merge_mode={this.toggle_mail_merge_mode} send_emails={this.send_emails} />
+      <ComposeFooter compose={this} />
 
       <LoadingOverlay />
     </div>;

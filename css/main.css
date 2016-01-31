@@ -18,7 +18,8 @@ body {
  * Based on Typebase */
 
 html {
-  font-family: "Roboto","Helvetica Neue","Trebuchet MS","Segoe",Helvetica,Arial,sans-serif;
+  /*font-family: "Roboto","Helvetica Neue","Trebuchet MS","Segoe",Helvetica,Arial,sans-serif;*/
+  font-family: Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   background: rgb(180, 180, 180);
 }
@@ -65,7 +66,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', sans-serif;
   margin-top: 1.5rem;
   margin-bottom: 0;
 }
@@ -342,6 +342,7 @@ sup {
   border-right: 1px solid #3c7de6;
   transition: all 200ms ease-in;
   height: 0;
+  overflow: hidden;
 }
 
 .email-datapanel-head {
@@ -495,10 +496,30 @@ span.email-datapanel-head-arrows-count {
   font-size: 11px;
 }
 
+.email-datapanel-content td {
+  outline: 0;
+}
+
 .email-datapanel-content th {
   font-weight: normal;
   border-bottom: 1px solid #DFDFE6;
-  /*box-shadow: inset 0 0 7px 4px rgba(255,255,255,.5)*/
+}
+
+.email-datapanel-content th:focus {
+  outline: 0;
+}
+
+.email-datapanel-content th > svg {
+  height: 30px;
+  fill: #DFDFE6;
+  vertical-align: middle;
+  margin-left: 2px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.email-datapanel-content th > svg:hover {
+  fill: #3c7de6;
 }
 
 .email-datapanel-content td, .email-datapanel-content th {
@@ -516,6 +537,9 @@ span.email-datapanel-head-arrows-count {
   background: #F8F8FB;
   padding-left: 6px;
   padding-right: 6px;
+  border-left: 1px solid #DFDFE6;
+  border-right: 1px solid #DFDFE6;
+  text-align: center;
 }
 
 .email-datapanel-content th:not(first-child) {
@@ -525,24 +549,34 @@ span.email-datapanel-head-arrows-count {
   background: white;
 }
 
-.email-datapanel-content td:first-child {
-  border-left: 1px solid #DFDFE6;
-  border-right: 1px solid #DFDFE6;
-  text-align: center;
-}
-
-.email-datapanel-content td:last-child,
-.email-datapanel-content th:last-child {
-  border-right: 1px solid #DFDFE6;
-}
-
-.email-datapanel-content tr:last-child {
+.email-datapanel-content tr:last-child td {
   border-bottom: 1px solid #DFDFE6;
 }
 
+.email-datapanel-content tr th:last-child,
+.email-datapanel-content tr td:last-child {
+  border-right: none;
+  border-left: 1px solid #DFDFE6;
+  border-bottom: none;
+  border-top: none;
+  padding: 0;
+}
+
+.email-datapanel-content td:not(:first-child):not(:last-child) {
+  min-width: 100px;
+}
+
 .email-datapanel-content tr.selected td {
-  /*background: #E5F6FF !important;*/
   font-weight: bold;
+}
+
+.email-datapanel-content input {
+  -webkit-appearance:none;
+  appearance: none;
+  outline: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
 }
 
 .email-datapanel-content .disabled {

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import ComposeField from "./field";
+import ComposeField from "./composefield";
 import ComposeSubject from "./subject";
 import ComposeBody from "./body";
 
@@ -29,14 +29,14 @@ export default React.createClass({
       chicklets[i].setAttribute("contentEditable", "false");
       //chicklets[i].setAttribute("draggable", "true");
     }
-    this.props.update_active_columns(columns);
+    this.props.compose.setState({in_use_columns: columns});
   },
   render: function() {
     return <div className="email-main email-shell">
       <ComposeField name="To" textFieldUpdate={this.textFieldUpdate}/>
       <ComposeField name="CC" textFieldUpdate={this.textFieldUpdate} />
       <ComposeSubject textFieldUpdate={this.textFieldUpdate}/>
-      <ComposeBody update_active_columns={this.props.update_active_columns} textFieldUpdate={this.textFieldUpdate}/>
+      <ComposeBody textFieldUpdate={this.textFieldUpdate}/>
     </div>;
   }
 });

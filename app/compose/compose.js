@@ -15,7 +15,7 @@ export default React.createClass({
       active_index: 0,
       in_use_columns: [],
       merge_data: [
-        //["Email"],
+        //["email"],
         //[""]
         ["First name", "Last name", "Email"],
         ["Peter","Mccoy","pmccoy0@blogspot.com"  ],
@@ -34,7 +34,7 @@ export default React.createClass({
         ["Randy","Washington","rwashingtond@nih.gov"  ],
         ["Elizabeth","Carr","ecarre@weather.com"  ],
         ["Laura","Henderson","lhendersonf@japanpost.jp"  ],
-        ["Kathleen","Arnold","karnoldg@hud.gov"  ],
+        //["Kathleen","Arnold","karnoldg@hud.gov"  ],
         //["Lois","Webb","lwebbh@wsj.com"  ],
         //["Aaron","Morales","amoralesi@google.cn"  ],
         //["Mary","Castillo","mcastilloj@typepad.com"  ],
@@ -91,7 +91,7 @@ export default React.createClass({
       <div className="email-container">
         <ComposeMain compose={this} active_data={active_data} />
 
-        <ComposeDataPanel compose={this} />
+        <ComposeDataPanel compose={this} merge_data={this.state.merge_data} active_index={this.state.active_index} />
       </div>
 
       <ComposeFooter compose={this} />

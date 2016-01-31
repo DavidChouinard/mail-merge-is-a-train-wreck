@@ -28,7 +28,7 @@ export default React.createClass({
         }
         self.setState({dropzone_visible: true})
       }, 200);
-    } else if (prev_props.merge_data != this.props.compose.merge_data) {
+    } else if (prev_props.merge_data != this.props.merge_data) {
       this.refs.datatable.enable_sticky_header();
     }
   },
@@ -73,7 +73,7 @@ export default React.createClass({
 
     return <div className="email-datapanel">
       <div className="email-datapanel-head">
-        {this.props.compose.merge_data === null ?
+        {this.props.merge_data === null ?
           <h4>Upload email address file</h4>
           :
           <span>

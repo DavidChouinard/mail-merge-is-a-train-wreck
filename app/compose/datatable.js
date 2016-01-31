@@ -6,10 +6,14 @@ import DataHeaderField from "./dataheaderfield";
 
 export default React.createClass({
   componentDidUpdate: function(prev_props) {
-    if (prev_props.active_index !== this.props.compose.state.active_index) {
+    if (prev_props.compose.state.merge_data !== this.props.compose.state.merge_data) {
+      console.log('new data');
+    }
+
+    if (prev_props.compose.state.active_index !== this.props.compose.state.active_index) {
+      console.log('foo');
       var row = ReactDOM.findDOMNode(this.refs.selected_row);
       var position = row.offsetTop;
-      // TODO
       //row.closest('.email-datapanel-content').scrollTop = position - 82;
     }
   },
@@ -26,8 +30,11 @@ export default React.createClass({
   is_in_use_column: function(index) {
     return this.props.compose.state.in_use_columns.indexOf(index) != -1
   },
-  random_key: function() {
-    return Math.random().toString(36).slice(2);
+  focus_cell: function(i,j) {
+    var table = ReactDOM.findDOMNode(this);
+    var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    var position = rows[i].offsetTop;
+    table.closest('.email-datapanel-content').scrollTop = position - 82;
   },
   render: function() {
     var active_index = this.props.compose.state.active_index;
@@ -38,7 +45,7 @@ export default React.createClass({
         <tr>
           <th key="0"></th>
           {this.props.compose.state.merge_data[0].map(function(heading, i) {
-            return <DataHeaderField key={i} i={i} compose={self.props.compose} value={heading} disabled={self.is_in_use_column(i)}/>;
+            return <DataHeaderField key={i} i={i} compose={self.props.compose} value={heading} disabled={self.is_in_use_column(i)} focus_cell={self.focus_cell}/>;
           })}
           <th key="last"><svg onClick={this.props.compose.add_column} viewBox="0 0 100 100" enable-background="new 0 0 100 100"><path d="M55.862,26.24v18.52h17.364v10.386H55.862V73.76h-11.82V55.146H26.773V44.76h17.269V26.24H55.862z"/></svg></th>
         </tr>
@@ -49,7 +56,7 @@ export default React.createClass({
           return <tr className={active_index == i ? "selected" : ""} ref={active_index == i ? "selected_row" : null} key={i}>
             <td key={i + "-first"}>{i + 1}</td>
             {row.map(function(element, j) {
-              return <DataField key={i + "-" + j} compose={self.props.compose} i={i + 1} j={j} value={element} />;
+              return <DataField key={i + "-" + j} compose={self.props.compose} i={i + 1} j={j} value={element} focus_cell={self.focus_cell}/>;
             })}
             <td key="last" />
           </tr>;

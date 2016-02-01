@@ -50,8 +50,13 @@ export default React.createClass({
     row.getElementsByTagName('td')[1].focus();
   },
   focus_on_new_column: function() {
-    var headers = ReactDOM.findDOMNode(this).getElementsByTagName('thead')[0].getElementsByTagName('th');
-    headers[headers.length - 2].focus();
+    var headers = ReactDOM.findDOMNode(this)
+      .parentElement
+      .querySelectorAll(".floatThead-table th");
+
+    setTimeout(function() {
+      headers[headers.length - 2].focus();
+    });
     /* could be nice to vertical scroll too */
   },
   render: function() {

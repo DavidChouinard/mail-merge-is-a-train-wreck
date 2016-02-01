@@ -8,6 +8,11 @@ export default React.createClass({
   getInitialState: function() {
     return { is_focused: this.props.value == "" };
   },
+  componentDidUpdate: function(prev_props, prev_state) {
+    if (prev_state.is_focused !== this.state.is_focused && this.state.is_focused) {
+      ReactDOM.findDOMNode(this).focus();
+    }
+  },
   onClick: function(event) {
     this.setState({is_focused: true});
   },

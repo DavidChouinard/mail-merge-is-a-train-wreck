@@ -301,6 +301,7 @@ sup {
   vertical-align: middle;
   padding-right: 1px;
   margin-bottom: 2px;
+  margin-right: 2px;
 }
 
 .email-actions-mass svg path {
@@ -461,6 +462,7 @@ span.email-datapanel-head-arrows-count {
 
 .email-datapanel-content th:focus {
   outline: 0;
+  line-height: 22px;
 }
 
 .email-datapanel-content th > svg {
@@ -517,7 +519,7 @@ span.email-datapanel-head-arrows-count {
 }
 
 .email-datapanel-content td:not(:first-child):not(:last-child) {
-  min-width: 100px;
+  min-width: 135px;
 }
 
 .email-datapanel-content tr.selected td {

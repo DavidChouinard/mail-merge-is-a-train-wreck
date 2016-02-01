@@ -2,4 +2,4 @@
 
 ---
 
-This code is public domain.
+This code is public domain: I'd love to see mail merge fixed. ([getting started](TODO.md))

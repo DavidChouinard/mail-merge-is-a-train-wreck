@@ -6,17 +6,7 @@ import Chicklet from "./chicklet";
 
 export default React.createClass({
   getInitialState: function() {
-    return { is_focused: false };
-  },
-  componentDidMount: function() {
-    if (this.props.value == "") {
-      this.setState({is_focused: true});
-    }
-  },
-  componentDidUpdate: function(prev_props, prev_state) {
-    if (prev_state.is_focused === this.state.is_focused) {
-      ReactDOM.findDOMNode(this).focus();
-    }
+    return { is_focused: this.props.value == "" };
   },
   onClick: function(event) {
     this.setState({is_focused: true});
@@ -40,7 +30,8 @@ export default React.createClass({
       cell.blur();
 
       // if the cell below is empty (i.e. newly created), set the focus there
-      var rows = cell.closest('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+      var rows = cell.closest('.email-datapanel')
+        .querySelectorAll(".email-datapanel-content > table > tbody > tr");
 
       var cell_below = rows[0].getElementsByTagName('td')[this.props.i + 1];
       if (cell_below.innerHTML == "") {

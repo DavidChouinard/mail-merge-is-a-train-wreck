@@ -10,7 +10,7 @@ import LoadingOverlay from "./loading_overlay";
 export default React.createClass({
   getInitialState: function() {
     return {
-      mail_merge_mode: true,
+      mail_merge_mode: false,
       is_sending: false,
       active_index: 0,
       in_use_columns: [],
@@ -27,13 +27,13 @@ export default React.createClass({
         ["Philip","Murphy","pmurphy6@wiley.com"  ],
         ["Maria","Daniels","mdaniels7@toplist.cz"  ],
         ["Mary","Lawrence","mlawrence8@yandex.ru"  ],
-        ["Walter","Williams","wwilliams9@friendfeed.com"  ],
-        ["Teresa","Cox","tcoxa@bbb.org"  ],
-        ["Aaron","Lynch","alynchb@cdc.gov"  ],
-        ["Kevin","Alvarez","kalvarezc@stanford.edu"  ],
-        ["Randy","Washington","rwashingtond@nih.gov"  ],
-        ["Elizabeth","Carr","ecarre@weather.com"  ],
-        ["Laura","Henderson","lhendersonf@japanpost.jp"  ],
+        //["Walter","Williams","wwilliams9@friendfeed.com"  ],
+        //["Teresa","Cox","tcoxa@bbb.org"  ],
+        //["Aaron","Lynch","alynchb@cdc.gov"  ],
+        //["Kevin","Alvarez","kalvarezc@stanford.edu"  ],
+        //["Randy","Washington","rwashingtond@nih.gov"  ],
+        //["Elizabeth","Carr","ecarre@weather.com"  ],
+        //["Laura","Henderson","lhendersonf@japanpost.jp"  ],
         //["Kathleen","Arnold","karnoldg@hud.gov"  ],
         //["Lois","Webb","lwebbh@wsj.com"  ],
         //["Aaron","Morales","amoralesi@google.cn"  ],
@@ -91,7 +91,7 @@ export default React.createClass({
       <div className="email-container">
         <ComposeMain compose={this} active_data={active_data} />
 
-        <ComposeDataPanel compose={this} merge_data={this.state.merge_data} active_index={this.state.active_index} />
+        <ComposeDataPanel compose={this} mail_merge_mode={this.state.mail_merge_mode} merge_data={this.state.merge_data} active_index={this.state.active_index} />
       </div>
 
       <ComposeFooter compose={this} />

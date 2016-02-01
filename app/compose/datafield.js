@@ -23,31 +23,14 @@ export default React.createClass({
 
       var rows = cell.closest('table').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
-      var i = this.props.i;
-      var j = this.props.j;
-
-      if (i < rows.length) {
-      } else {
+      if (this.props.i >= rows.length) {
         this.props.compose.add_row();
+      } else {
+        var cell_below = rows[this.props.i].getElementsByTagName('td')[this.props.j + 1];
+        if (cell_below.innerHTML == "") {
+          cell_below.focus();
+        }
       }
-
-      var row = rows[i];
-
-      var cells = row.getElementsByTagName('td');
-
-      // if the cell direclty under is empty, focus on that one
-      // else, if the first cell is empty, focus on that one
-      // else, don't focus on anything
-      if (cells[j + 1].innerHTML == "") {
-        cells[j + 1].focus();
-      } else if (cells[1].innerHTML == "") {
-        cells[1].focus();
-      }
-
-        //var position = row.offsetTop;
-        //table.closest('.email-datapanel-content').scrollTop = position - 82;
-      //this.props.focus_cell(10);
-
     }
   },
   render: function() {

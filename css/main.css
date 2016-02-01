@@ -360,10 +360,6 @@ sup {
   line-height: 20px;
 }
 
-.mailmerge-disabled .email-datapanel-head h4  {
-  visibility: hidden;
-}
-
 .email-datapanel-head-arrows {
   display: inline-block;
   border: 1px solid white;
@@ -426,20 +422,6 @@ span.email-datapanel-head-arrows-count {
   visibility: visible;
 }
 
-.email-datapanel-prompt {
-  text-align: center;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #888;
-
-  cursor: pointer;
-  overflow: auto;
-}
-
 .hidden {
   visibility: hidden;
 }
@@ -450,27 +432,6 @@ span.email-datapanel-head-arrows-count {
 
 .email-datapanel-prompt > div {
   margin: 0 auto;
-}
-
-
-.email-datapanel-prompt svg {
-  width: 35px;
-  fill: #888;
-}
-
-.email-datapanel-prompt:hover,
-.email-datapanel-prompt.active {
-  color: black;
-}
-
-.email-datapanel-prompt:hover svg,
-.email-datapanel-prompt.active svg {
-  fill: black;
-}
-
-.email-datapanel-supported {
-  white-space: nowrap;
-  font-size: 11px;
 }
 
 .email-datapanel-content {

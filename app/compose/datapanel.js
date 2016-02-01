@@ -6,10 +6,7 @@ import Arrow from "./arrow";
 
 export default React.createClass({
   getInitialState: function() {
-    return {
-      loading: false,
-      dropzone_visible: true
-    }
+    return { dropzone_visible: true }
   },
   componentDidUpdate: function(prev_props, prev_state) {
     var self = this;
@@ -36,19 +33,14 @@ export default React.createClass({
 
     var reader = new FileReader();
 
-    self.setState({loading: true});
-
     reader.onload = function(event) {
       var contents = event.target.result;
       var data = contents
         .split('\n')
         .map(function(l) { return l.split(','); });
 
-      setTimeout(function() {   // simulate loading time
-        self.setState({loading: false});
-        self.props.compose.update_merge_data(data);
-        self.refs.datatable.enable_sticky_header();
-      }, 1000);
+      self.props.compose.update_merge_data(data);
+      self.refs.datatable.enable_sticky_header();
     };
 
     reader.onerror = function(event) {
@@ -76,7 +68,6 @@ export default React.createClass({
       <div className="email-datapanel-head">
         <span>
           <span className="email-datapanel-head-arrows">
-
             <Arrow type="first" disabled={active_index == 0} onClick={this.goToFirst}/><Arrow type="previous" disabled={active_index == 0} onClick={this.goToPrevious}/><span className="email-datapanel-head-arrows-count">{active_index + 1}</span><Arrow type="next" disabled={active_index == this.props.compose.state.merge_data.length - 2} onClick={this.goToNext}/><Arrow type="last" disabled={active_index == this.props.compose.state.merge_data.length - 2} onClick={this.goToLast}/>
           </span>
           <span className="email-datapanel-head-total">of {this.props.compose.state.merge_data.length - 1} recipients</span>
@@ -84,13 +75,7 @@ export default React.createClass({
       </div>
 
       <Dropzone onDrop={this.onDrop} ref="dropzone" accept="text/csv" disableClick={this.props.compose.merge_data !== null} className="email-datapanel-content" activeClassName="active">
-        {this.state.loading ?
-          <div className="email-datapanel-prompt">
-            <img src="/images/loading.gif" alt="Loading" className="email-datapanel-prompt-loading" />
-          </div>
-          :
-          <DataTable ref="datatable" compose={this.props.compose} mail_merge_mode={this.props.mail_merge_mode} merge_data={this.props.merge_data} active_index={this.props.active_index}/>
-        }
+        <DataTable ref="datatable" compose={this.props.compose} mail_merge_mode={this.props.mail_merge_mode} merge_data={this.props.merge_data} active_index={this.props.active_index}/>
       </Dropzone>
     </div>;
   }

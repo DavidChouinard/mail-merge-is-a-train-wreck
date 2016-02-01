@@ -446,13 +446,6 @@ span.email-datapanel-head-arrows-count {
   border: 10px solid #3c7de6;
 }
 
-.email-datapanel-prompt-loading {
-  width: 32px;
-  height: 32px;
-  display: block;
-  margin: 0 auto;
-}
-
 .email-datapanel-content table {
   font-size: 11px;
 }

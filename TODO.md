@@ -20,4 +20,6 @@ Here are some things that are missing to productize it.
 
 * There's currently no way to delete rows and empty cells aren't handled well.
 
-* There isn't much design around rich text formatting, particularly regarding dynamic data as links or as the source of images. 
+* There isn't much design around rich text formatting, particularly regarding dynamic data as links or as the source of images.
+
+* There's no backend nor any support for server-side data processing.

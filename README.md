@@ -2,4 +2,5 @@
 
 ---
 
-This code is public domain: I'd love to see mail merge fixed. ([getting started](TODO.md))
+I'd love to see mail merge fixed. Here are ([next steps](TODO.md)) for
+productizing this demo.

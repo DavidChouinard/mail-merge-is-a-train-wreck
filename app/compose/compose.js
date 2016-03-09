@@ -24,8 +24,8 @@ export default React.createClass({
     this.setState({mail_merge_mode: !this.state.mail_merge_mode});
   },
   update_merge_data: function(data) {
-      /* filter for uneven rows */
-      data = data.filter(function(l) { return l.length == data[0].length; });
+    /* filter for uneven rows */
+    data = data.filter(function(l) { return l.length == data[0].length; });
     this.setState({merge_data: data, active_index: 0});
   },
   update_active_index: function(index) {

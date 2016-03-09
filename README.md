@@ -2,5 +2,4 @@
 
 ---
 
-I'd love to see mail merge fixed. Here are ([next steps](TODO.md)) for
-productizing this demo.
+I'd love to see mail merge fixed. Here are [next steps](TODO.md) for productizing this demo.

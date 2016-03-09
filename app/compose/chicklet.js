@@ -1,5 +1,3 @@
-import React from "react";
-
 export default React.createClass({
   getInitialState: function() {
     return { disabled: false };

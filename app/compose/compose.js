@@ -1,4 +1,3 @@
-import React from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import ComposeHeader from "./header";

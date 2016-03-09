@@ -1,5 +1,3 @@
-import React from "react";
-
 export default React.createClass({
   send_emails: function() {
     this.props.compose.setState({is_sending: true});

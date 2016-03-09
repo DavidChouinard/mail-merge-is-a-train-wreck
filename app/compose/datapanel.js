@@ -1,4 +1,3 @@
-import React from "react";
 import DataTable from "./datatable";
 import Dropzone from 'react-dropzone';
 

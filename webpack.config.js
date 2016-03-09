@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   context: path.join(__dirname, 'app'),
@@ -7,7 +8,7 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.join(__dirname, 'build'),
-    publicPath: '/static/'
+    publicPath: '/build/'
   },
   module: {
     loaders: [
@@ -21,4 +22,10 @@ module.exports = {
       }
     ],
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      'React':     'react',
+    })
+  ]
 }
